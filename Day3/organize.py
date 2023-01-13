@@ -10,8 +10,9 @@ for sack in sacks:
     str2 = sack[i//2:]
     a = list(set(str1)&set(str2))
     for i in a:
+        print(prioSum)
         if (65 <= ord(i) <= 90):
             prioSum += ord(i) - 38
-        elif(61 <= ord(i) <= 122):
+        elif(97 <= ord(i) <= 122):
             prioSum += ord(i) - 96
 print(prioSum)
