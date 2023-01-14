@@ -45,18 +45,21 @@ for i in range(len(stacks)):
     for n in range(count):
         stacks[i].remove("")
 directions.pop(0)
-
+#moves stuff
 def execute(amount, start, end):
+    temp = stacks[start][-amount::1]
+# VERY IMPORTANT/FUNNY? IF YOU REMOVE THIS LOOP WITH POP, EVERYTHING(most thing) BECOMES Z
+#WHYYYYYYY??????????
     for i in range(amount):
-        temp = stacks[start][-1]
         stacks[start].pop()
-        stacks[end].append(temp)
-
+    stacks[end] += temp
+#reads directions and executes them with above function
 for line in directions:
     numbers = p.findall(line)
     amount = int(numbers[0][0])
     start = int(numbers[0][1])-1
     end = int(numbers[0][2])-1
     execute(amount, start, end)
+#prints top numbers
 for line in stacks:
     print(line[-1])
