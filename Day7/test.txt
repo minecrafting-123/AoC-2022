@@ -1,0 +1,16 @@
+$ cd /
+$ ls
+dir fwbjchs
+dir hmnpr
+dir jtrbrcjl
+dir lcgv
+dir ldqc
+dir vrvl
+$ cd fwbjchs
+$ ls
+154619 wqdlv.mdw
+21648 wvbnz
+$ cd ..
+$ cd hmnpr
+$ ls
+178623 rftqqsrp.bfm
