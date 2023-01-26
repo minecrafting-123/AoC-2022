@@ -2,7 +2,7 @@
 coords = []
 numVisible = 0
 
-open ("input.txt") as reader:
+with open("input.txt") as reader:
     for line in reader:
         x = []
         for char in line:
@@ -12,13 +12,13 @@ open ("input.txt") as reader:
 def beegCheck(x, y):
     height = coords[y][x]
     checksFailed = 0
-    if (x == 0 or x == coords[0].len() or y == 0 or y == coords.len()):
-        return true
+    if (x == 0 or x == len(coords) or y == 0 or y == len(coords)):
+        return True
     for i in range(0, x, 1):
         if (coords[y][i] >= height):
             checksFailed += 1
             break
-    for j in range(x+1, coords.len(), 1):
+    for j in range(x+1, len(coords), 1):
         if (coords[y][j] >= height):
             checksFailed += 1
             break
@@ -26,18 +26,18 @@ def beegCheck(x, y):
         if (coords[k][x] >= height):
             checksFailed += 1
             break
-    for l in range(y+1, coords.len(), 1):
+    for l in range(y+1, len(coords), 1):
         if (coords[l][x] >= height):
             checksFailed += 1
             break
     if (checksFailed == 4):
-        return false
-    return true
+        return False
+    return True
 
 
 #goes through all values and checks for visibility
-for i in range(coords.len()):
-    for k in range(coords[0].len()):
+for i in range(len(coords)):
+    for k in range(len(coords)):
         if (beegCheck(i, k)):
             numVisible += 1
 
