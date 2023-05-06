@@ -1,0 +1,5 @@
+  Starting items: 89, 73, 66, 57, 64, 80
+  Operation: new = old * 3
+  Test: divisible by 13
+    If true: throw to monkey 6
+    If false: throw to monkey 2
