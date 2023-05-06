@@ -1,7 +1,6 @@
 import re
-import math
 
-ROUNDS = 20
+ROUNDS = 10000
 
 class Monkey:
     def __init__(self, stuff, op, div, tru, fals):
@@ -15,13 +14,13 @@ class Monkey:
         return self.stuff
     def addStuff(self, add):
         self.stuff.append(add)
-    def monkeyAround(self):
+    def monkeyAround(self, bigDiv):
         toBeRemoved = list(())
         for thing in self.stuff:
             self.inspects += 1
             old = int(thing)
             new = eval(str(self.op))
-            new = math.floor(int(new) / 3)
+            new = new % bigDiv
             if (new % self.div == 0):
                 monkeyList[self.tru].addStuff(new)
                 toBeRemoved.append(thing)
@@ -32,8 +31,9 @@ class Monkey:
             self.stuff.remove(element)
     def getInspects(self):
         return self.inspects
+    def getDivs(self):
+        return self.div
 
-    #EVAL FUNCTION ALLOWS FOR IN LINE CODE
 with open("input.txt", 'r') as reader:
     monkeyList = list(())
     for monkey in reader.read().split("\n\n"):
@@ -46,13 +46,13 @@ with open("input.txt", 'r') as reader:
         monke = Monkey(start, operation[0], int(test[0]), int(true[0]), int(false[0]))
         monkeyList.append(monke)
 
+    divSum = 1
+    for monkey in monkeyList:
+        divSum *= monkey.getDivs()
     for x in range(ROUNDS):
         for monkey in monkeyList:
-            monkey.monkeyAround()
+            monkey.monkeyAround(divSum)
     
-    inspect = list(())
-    for moneky in monkeyList:
-        inspect.append(monkey.getInspects())
     for monkey in monkeyList:
-        print(monkey.getStuff())
+        #print(monkey.getStuff())
         print(monkey.getInspects())
