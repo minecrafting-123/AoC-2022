@@ -1,10 +1,9 @@
 maze = []
 
 class Node():
-    def __init__(self, position, distance=float("inf"), prev=None):
+    def __init__(self, position, distance=float("inf")):
         self.position = position
         self.distance = distance
-        self.prev = prev
     def __eq__(self, other):
         return self.position == other.position
 
@@ -18,8 +17,6 @@ with open("input.txt", "r") as reader:
         for letter in ele:
             newRow.append(letter)
         maze[x] = newRow
-
-
 
 for row, val in enumerate(maze):
     for col, val2 in enumerate(maze[0]):
@@ -73,7 +70,7 @@ for row, val in enumerate(maze):
             starts.append(start)
 lorge = float("inf")
 for start in starts:
-    if (bfs(start, end) == None):
+    if (bfs(start, end) is None):
         continue
     if (bfs(start, end) < lorge):
         lorge = bfs(start, end)

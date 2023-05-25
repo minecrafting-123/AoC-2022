@@ -2,7 +2,7 @@ import re
 
 ROUNDS = 10000
 
-class Monkey:
+class Monkey():
     def __init__(self, stuff, op, div, tru, fals):
         self.stuff = stuff[0].split(", ")
         self.op = op
