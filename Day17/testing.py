@@ -51,33 +51,45 @@ def check(coords, rock):
                     blocked = True
                     break
     return blocked
-#part1
-gustIndex = 0
-rockIndex = 0
-for i in range(2022):
-    #print(gustIndex)
-    #print(rockIndex)
-    spawn = (highestY - 3 - len(rocks[rockIndex]), 2)
-    atRest = False
-    while(not atRest):
-        #print(spawn)
-        #print(gusts[gustIndex])
-        if (not check((spawn[0], spawn[1] + gusts[gustIndex]), rocks[rockIndex])):
-            spawn = (spawn[0], spawn[1] + gusts[gustIndex])
-        if (gustIndex >= len(gusts)-1):
-            gustIndex = 0
-        else:
-            gustIndex += 1
-        if check((spawn[0] + 1, spawn[1]), rocks[rockIndex]):
-            renderRock(spawn, rocks[rockIndex])
-            atRest = True
-        else:
-            spawn = (spawn[0] + 1, spawn[1])
-        #print(atRest)
-    if spawn[0] < highestY:
-        highestY = spawn[0]
-    if rockIndex >= len(rocks) - 1:
-        rockIndex = 0
-    else:
-        rockIndex += 1
-print(10000-highestY)
+
+def filledLine(y):
+    filled = True
+    for i in range(len(field[y])):
+        if (field[y][i] == 0):
+            filled = False
+            break
+    return filled
+
+def downshift(subarray):
+    field.fill(0)
+    for i, row in enumerate(subarray):
+        print(i)
+        field[len(field)-len(subarray)+i] = row
+
+testo = [[1, 2, 3, 4, 5, 6, 7], [7, 7, 7, 7, 7, 0, 0]]
+downshift(testo)
+print(field)
+#part2
+# gustIndex = 0
+# rockIndex = 0
+# while True:
+#     spawn = (highestY - 3 - len(rocks[rockIndex]), 2)
+#     atRest = False
+#     while(not atRest):
+#         if (not check((spawn[0], spawn[1] + gusts[gustIndex]), rocks[rockIndex])):
+#             spawn = (spawn[0], spawn[1] + gusts[gustIndex])
+#         if (gustIndex >= len(gusts)-1):
+#             gustIndex = 0
+#         else:
+#             gustIndex += 1
+#         if check((spawn[0] + 1, spawn[1]), rocks[rockIndex]):
+#             renderRock(spawn, rocks[rockIndex])
+#             atRest = True
+#         else:
+#             spawn = (spawn[0] + 1, spawn[1])
+#     if spawn[0] < highestY:
+#         highestY = spawn[0]
+#     if rockIndex >= len(rocks) - 1:
+#         rockIndex = 0
+#     else:
+#         rockIndex += 1
