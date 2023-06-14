@@ -75,7 +75,7 @@ def try1():
         return testables
     for coord in coords:
 
-        x, y, z = coords[l]
+        x, y, z = coord
         print(x, y, z)
         #no point in testing a point if it's surrounded anyways
         if not comp(x, y, z) == 6:
