@@ -1,3 +1,5 @@
+#from btrotta/advent-of-code-2022, which is how I check my answers and also helps me learn new things
+
 import re, copy
 with open('input.txt') as reader:
     lines = [line.strip() for line in reader.readlines()]
