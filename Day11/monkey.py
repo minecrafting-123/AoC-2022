@@ -19,6 +19,8 @@ class Monkey:
         toBeRemoved = list(())
         for thing in self.stuff:
             self.inspects += 1
+            #for the eval
+            old = int(thing)
             new = eval(str(self.op))
             new = math.floor(int(new) / 3)
             if (new % self.div == 0):
