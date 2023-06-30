@@ -17,7 +17,6 @@ def move(valueList, moveList, index):
     valueList.insert(newIndex, toMove)
     moveList.insert(newIndex, moveList.pop(index))
 
-
 for order in range(len(part1)):
     i = moveOrder.index(order)
     move(part1, moveOrder, i)
