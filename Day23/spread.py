@@ -42,7 +42,13 @@ def think(direction, x, y):
         proposals.update({(x+dirX, y): (True, (x, y))})
         return True
 
-for _ in range(10):
+elfCount = nonMovers = 0
+for location in grid:
+    if grid[location] == '#':
+        elfCount += 1
+
+for _ in range(1000):
+    nonMovers = 0
     for location in grid:
         if grid[location] == '#':
             x, y = location
@@ -52,10 +58,14 @@ for _ in range(10):
                 if spot not in grid or grid[spot] == '.':
                     clear += 1
             if len(surrounding) <= clear:
+                nonMovers += 1
                 continue
             for direction in thinkOrder:
                 if think(direction, x, y):
                     break
+    if nonMovers == elfCount:
+        print(_+1, nonMovers)
+        break
     for target in proposals:
         if proposals[target]:
             grid.update({target: '#'})
@@ -64,10 +74,9 @@ for _ in range(10):
     proposals.clear()
 
 minX = minY = 100
-maxX = maxY = count = 0
+maxX = maxY = 0
 for location in grid:
     if grid[location] == '#':
-        count += 1
         x, y = location
         if x > maxX:
             maxX = x
@@ -77,7 +86,7 @@ for location in grid:
             minY = y
         if y > maxY:
             maxY = y
-print(minX, maxX, minY, maxY, count)
-ans = (maxX-minX+1)*(maxY-minY+1) - count
+print(minX, maxX, minY, maxY, elfCount)
+ans = (maxX-minX+1)*(maxY-minY+1) - elfCount
 print(ans)
 #print(proposals)
