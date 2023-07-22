@@ -69,13 +69,15 @@ def drift(oldGrid):
 #maxTime = 0
 states = {0: grid}
 visited = set()
+isTrip1 = True
+returned = False
 def move(pos, time):
-    global visited
+    global visited, isTrip1, returned
     # global maxTime
     # if time > maxTime:
     #     maxTime = time
     #     print(maxTime)
-    print(pos, time)
+    #print(pos, time)
     # if time == 1:
     #     exit()
     x, y = pos
@@ -86,13 +88,28 @@ def move(pos, time):
     for movement in moves:
         if movement in next and next[movement] == '.' and (movement, time) not in visited:
             visited.add((movement, time))
-            if movement == (maxX, maxY):
-                print("FINAL!!!", time+1)
+            if pos == (maxX, maxY) and isTrip1:
+                print("First trip", time)
+                isTrip1 = False
+                queue.clear()
+            if pos == (1, 0) and not isTrip1 and not returned:
+                print("returned", time)
+                returned = True
+                queue.clear()
+            if pos == (maxX, maxY) and returned:
+                print("total time?", time)
                 exit()
             if pos == movement and pos == start and len(queue) > 0:
                 return
             queue.append((movement, time+1))
-    
+
 while len(queue) > 0:
     pos, t = queue.pop(0)
     move(pos, t)
+while len(queue) > 0:
+    pos, t = queue.pop(0)
+    move(pos, t)
+while len(queue) > 0:
+    pos, t = queue.pop(0)
+    move(pos, t)
+
